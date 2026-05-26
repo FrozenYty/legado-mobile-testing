@@ -13,16 +13,27 @@ legado-mobile-testing/
 ├── README.md                    # Project overview
 ├── .gitignore                   # Git ignore rules
 ├── app-under-test/              # Application source code under test
-│   └── legado-master/           # Legado Android source (reference)
+│   └── legado-master/           # Legado Android source
+│       └── app/src/androidTest/ # Espresso UI automation tests
+│           └── java/io/legado/app/espresso/
+│               ├── TestHelper.kt
+│               ├── TC001_AppLaunchTest.kt
+│               ├── TC002_ImportLocalBookTest.kt
+│               ├── TC003_OpenBookReadTest.kt
+│               ├── TC004_ChangeReadingThemeTest.kt
+│               ├── TC005_TTSPlaybackTest.kt
+│               └── TC006_BookshelfSearchTest.kt
 ├── test-docs/                   # Test documentation
 │   ├── test-plan.md             # Overall test strategy & scope
-│   ├── test-cases.md            # Detailed test cases
+│   ├── test-cases.md            # Detailed test cases (6 cases)
 │   ├── bug-report-template.md   # Template for filing bugs
 │   └── test-summary-report.md   # Final test summary
 ├── bug-reports/                 # Filed bug reports
 │   └── bug-001.md               # Example bug report
 ├── screenshots/                 # Test evidence screenshots
-├── automation/                  # UI automation scripts (Espresso/UIAutomator)
+├── automation/                  # Test runner scripts & config
+│   ├── README.md                # Automation overview
+│   └── run-tests.sh             # CLI test runner
 └── test-results/                # Test execution results
     └── manual-test-result.md    # Manual test pass/fail records
 ```
