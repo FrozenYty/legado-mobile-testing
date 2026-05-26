@@ -15,6 +15,117 @@ Android e-book reader. The project is hosted at `legado-mobile-testing` on GitHu
 
 **All code, comments, documentation, and commit messages must be in English.**
 
+## Required Reading (do this first)
+
+Before writing any code, open these files in order:
+
+| # | File | Why |
+|---|------|-----|
+| 1 | `CONTRIBUTING.md` | Branch naming, commit format, PR rules, what NOT to do |
+| 2 | `test-docs/test-case-plan.md` | Find your TC-ID range, module, and required testing methods |
+| 3 | `test-docs/test-cases.md` | See existing TC specs for format reference |
+| 4 | `app/.../espresso/TestHelper.kt` | Understand shared utilities before using them |
+| 5 | `app/.../espresso/TC001_AppLaunchTest.kt` | Reference Espresso pattern (simplest working example) |
+| 6 | `app/.../espresso/TC003_OpenBookReadTest.kt` | Reference pattern for tests that need DB setup |
+
+Then scan the relevant app source files for your feature (see [Key App Architecture](#key-app-architecture) below).
+
+## Complete Workflow (follow this order)
+
+When you receive a TC assignment, execute these steps in order. Do NOT skip steps.
+
+### 1. Plan
+
+- Read your TC range from `test-docs/test-case-plan.md`
+- Identify which testing methods you must use (Espresso / UIAutomator / Unit / Integration / Manual / Perf)
+- Read the existing TC specs in `test-docs/test-cases.md` for format reference
+
+### 2. Code
+
+- Create test class(es) in the correct source directory (see [Where Files Live](#where-files-live))
+- Copy the pattern from the relevant template in [Test Writing Patterns](#test-writing-patterns)
+- Use `TestHelper.insertTestBook()` for DB setup, `TestHelper.cleanupTestData()` for cleanup
+- Every class must have `@author Your English Name` in its KDoc
+
+### 3. Compile
+
+```bash
+cd app-under-test/legado-master
+./gradlew :app:compileAppDebugAndroidTestSources
+```
+
+Fix all compilation errors. Do NOT proceed until this passes.
+
+### 4. Run
+
+```bash
+./gradlew :app:connectedAppDebugAndroidTest \
+    -Pandroid.testInstrumentationRunnerArguments.class=<full.package.ClassName>
+```
+
+Re-run if flaky. Log the result (Passed / Partial / Failed).
+
+### 5. Document
+
+Update these files with your results. Follow the existing format — don't invent new columns or layouts.
+
+| File | What to update |
+|------|---------------|
+| `test-docs/test-cases.md` | Append your TC specs. Copy the table format from TC-001. Set Status. |
+| `test-results/manual-test-result.md` | Add your rows to the Results table. Update Summary counters. |
+| `test-docs/test-summary-report.md` | Add key findings for your tests. Update the Pass/Fail/Blocked counters. |
+| `automation/README.md` | If you added new test files, consider whether to mention them. Not required every time. |
+
+### 6. Commit
+
+```bash
+# NEVER use git add -A or git add .
+# Stage only your files individually:
+git add path/to/your/test.kt
+git add test-docs/test-cases.md
+# ... etc.
+
+# Commit with the required format:
+git commit -m "$(cat <<'EOF'
+<type>: <short description>
+
+<optional body>
+
+Author: <Your English Name>
+EOF
+)"
+```
+
+**Commit types**: `test` (new test), `fix` (bug fix), `docs` (documentation only)
+
+Good example:
+```
+test: add chapter list navigation tests (TC-007 ~ TC-012)
+
+Espresso: TC-007, UIAutomator: TC-008, Unit: TC-009
+
+Author: Jane Smith
+```
+
+### 7. Push & PR
+
+```bash
+# Branch naming: tc/<your-name>/<TC-range>
+git checkout -b tc/jane-smith/TC007-012
+git push -u origin tc/jane-smith/TC007-012
+```
+
+Then open a PR on GitHub. The PR template will load automatically — fill in all sections.
+
+### Red Flags (stop and ask)
+
+- ❌ You want to modify `build.gradle` or `libs.versions.toml` → discuss with team first
+- ❌ You want to change files in `app/src/main/` → not allowed, tests only
+- ❌ You want to commit generated files (`.class`, `.dex`, build outputs) → add to `.gitignore` instead
+- ❌ You're about to `git add -A` → don't, stage files individually
+- ❌ Compilation fails after your changes → fix before committing
+- ❌ Tests fail consistently (not flaky) → investigate root cause, don't force-commit
+
 ## Environment Setup
 
 ```bash
@@ -86,8 +197,6 @@ test-docs/
 automation/
 ├── run-tests.sh              ← CLI test runner script
 └── README.md                 ← Automation overview
-
-Claude_Code_Files/            ← AI-generated intermediate files (gitignored)
 ```
 
 ## Key App Architecture
@@ -221,16 +330,6 @@ Located at `app/src/androidTest/java/io/legado/app/espresso/TestHelper.kt`
 
 7. **SearchActivity Not Exported**
    → `SearchActivity` has no `android:exported="true"` and cannot be launched via `am start` or direct intent from outside the app. Use `MainActivity` → overflow menu → search instead.
-
-## How to Add New Test Cases
-
-1. Find the next available TC-ID range in `test-docs/test-case-plan.md`
-2. Assign the range to a team member with their English name
-3. Write the test spec in `test-docs/test-cases.md` (follow existing format)
-4. Create the test class in the appropriate source directory
-5. Run `./gradlew :app:compileAppDebugAndroidTestSources` to verify compilation
-6. Run the test via `./gradlew :app:connectedAppDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=<full.package.ClassName>`
-7. Update `test-results/manual-test-result.md` and `test-docs/test-summary-report.md` with results
 
 ## Extending the Plan
 
