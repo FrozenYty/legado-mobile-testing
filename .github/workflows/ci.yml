@@ -30,4 +30,6 @@ jobs:
 
       - name: Compile test sources
         working-directory: app-under-test/legado-master
-        run: ./gradlew :app:compileAppDebugAndroidTestSources
+        run: |
+          chmod +x gradlew
+          ./gradlew :app:compileAppDebugAndroidTestSources
