@@ -43,6 +43,30 @@ cd app-under-test/legado-master
     -Pandroid.testInstrumentationRunnerArguments.class=io.legado.app.espresso.TC001_AppLaunchTest
 ```
 
+## Emulator Compatibility
+
+These tests were developed on **MuMu Emulator (Android 12, API 32, x86_64)** but work on any
+Android emulator or physical device running API 21+.
+
+| Aspect | MuMu | Android Studio Emulator | Affects Tests? |
+|--------|------|------------------------|----------------|
+| Architecture | x86_64 | x86_64 (default) | No |
+| adb access | `adb devices` → `emulator-5554` | `adb devices` → `emulator-5554` | No |
+| Animation disable | Same `adb shell settings` commands | Same commands | No |
+| Privacy/password dialogs | App-level, shown on first launch | Same behavior | No |
+| SAF file picker | Android `DocumentsUI` | Same `DocumentsUI` | UIAutomator selectors may need tweak |
+| TTS engine | May not be pre-installed | Google APIs image includes Google TTS | TC-005, TC-014 (TTS tests) |
+| Screen resolution | Varies (e.g., 1080×1920) | Varies (configurable in AVD) | UIAutomator coordinate-based clicks may need adjustment |
+| Google Play Services | Often missing | Available in "Google APIs" image | Firebase warnings only (harmless) |
+
+**Bottom line**: Espresso and Unit tests are emulator-agnostic. UIAutomator tests that interact
+with system UI (file picker, TTS settings) should be verified on the target emulator once.
+
+**Quick setup for Android Studio Emulator:**
+1. AVD Manager → Create Virtual Device → Pixel 6 → System Image: **API 32+ with Google APIs**
+2. Cold boot the emulator before running tests
+3. Run the same `adb shell settings put global ...` commands from Environment Setup above
+
 ## Where Files Live
 
 ```
