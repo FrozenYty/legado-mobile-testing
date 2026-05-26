@@ -11,21 +11,20 @@ This repository contains the test documentation, manual test results, bug report
 ```
 legado-mobile-testing/
 ├── README.md                    # Project overview
+├── AI-GUIDE.md                  # AI collaboration guide (setup, patterns, pitfalls)
 ├── .gitignore                   # Git ignore rules
 ├── app-under-test/              # Application source code under test
 │   └── legado-master/           # Legado Android source
-│       └── app/src/androidTest/ # Espresso UI automation tests
-│           └── java/io/legado/app/espresso/
-│               ├── TestHelper.kt
-│               ├── TC001_AppLaunchTest.kt
-│               ├── TC002_ImportLocalBookTest.kt
-│               ├── TC003_OpenBookReadTest.kt
-│               ├── TC004_ChangeReadingThemeTest.kt
-│               ├── TC005_TTSPlaybackTest.kt
-│               └── TC006_BookshelfSearchTest.kt
+│       └── app/src/
+│           ├── androidTest/     # Instrumented tests (Espresso, UIAutomator, Room)
+│           │   └── java/io/legado/app/espresso/
+│           │       ├── TestHelper.kt
+│           │       └── TC*_*Test.kt
+│           └── test/            # Unit tests (JUnit + Mockito)
 ├── test-docs/                   # Test documentation
 │   ├── test-plan.md             # Overall test strategy & scope
-│   ├── test-cases.md            # Detailed test cases (6 cases)
+│   ├── test-case-plan.md        # TC assignment plan & method distribution
+│   ├── test-cases.md            # Detailed test case specifications
 │   ├── bug-report-template.md   # Template for filing bugs
 │   └── test-summary-report.md   # Final test summary
 ├── bug-reports/                 # Filed bug reports
@@ -40,10 +39,25 @@ legado-mobile-testing/
 
 ## Test Scope
 
-- **Functional Testing**: Core reading features, book import, bookshelf management, reading settings
+- **Functional Testing**: Core reading features, book import, bookshelf management, reading settings, WebDAV sync
 - **UI Testing**: Layout rendering, theme switching, navigation flows
-- **Compatibility Testing**: Android API levels, screen sizes
-- **Performance Testing**: Page rendering speed, memory usage during long reading sessions
+- **Compatibility Testing**: Android API levels, screen sizes, font scaling
+- **Performance Testing**: App startup time, page rendering speed, memory footprint
+
+## Testing Methods
+
+This project uses multiple complementary testing approaches:
+
+| Method | Tool | Scope |
+|--------|------|-------|
+| Espresso | `androidx.test.espresso` | In-app UI automation |
+| UIAutomator | `androidx.test.uiautomator` | Cross-app & system UI |
+| Unit Tests | JUnit 4 + Mockito | Business logic |
+| Integration Tests | Room / ContentProvider | Data layer |
+| Manual | Structured checklist | UX & accessibility |
+| Performance | Benchmark / timer | Speed & memory |
+
+See `AI-GUIDE.md` for how to contribute tests. See `test-docs/test-case-plan.md` for TC assignments.
 
 ## App Under Test
 
