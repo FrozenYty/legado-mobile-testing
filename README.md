@@ -11,6 +11,7 @@ This repository contains the test documentation, manual test results, bug report
 ```
 legado-mobile-testing/
 ├── README.md                    # Project overview
+├── CONTRIBUTING.md              # Commit rules, branch naming, PR process
 ├── AI-GUIDE.md                  # AI collaboration guide (setup, patterns, pitfalls)
 ├── .gitignore                   # Git ignore rules
 ├── app-under-test/              # Application source code under test
