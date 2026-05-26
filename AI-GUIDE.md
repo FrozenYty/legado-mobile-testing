@@ -13,6 +13,8 @@ Android e-book reader. The project is hosted at `legado-mobile-testing` on GitHu
 - Espresso & UIAutomator tests under the app's `androidTest` source set
 - Unit tests under the app's `test` source set
 
+**All code, comments, documentation, and commit messages must be in English.**
+
 ## Environment Setup
 
 ```bash

@@ -6,6 +6,8 @@ A structured mobile testing project for the [Legado](https://github.com/gedoor/l
 
 This repository contains the test documentation, manual test results, bug reports, screenshots, and automation setup for testing the Legado Android app. The app-under-test source code is included as a Git submodule reference for traceability.
 
+> **Language**: All code, comments, documentation, and commit messages must be written in **English**.
+
 ## Directory Structure
 
 ```

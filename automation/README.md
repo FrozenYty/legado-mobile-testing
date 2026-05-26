@@ -1,6 +1,8 @@
 # Automation
 
-Test code for the Legado Mobile Testing project. For setup instructions and coding patterns, see the main `AI-GUIDE.md` at the project root.
+Test code for the Legado Mobile Testing project.
+
+> **Language**: All code, comments, and documentation in **English**.
 
 ## Test Source Locations
 
