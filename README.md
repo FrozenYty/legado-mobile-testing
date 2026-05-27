@@ -10,21 +10,24 @@ This repository contains the test documentation, manual test results, bug report
 
 ## Getting Started
 
-1. Read [CONTRIBUTING.md](CONTRIBUTING.md) — commit rules, branch naming, PR process
-2. Read [test-docs/test-case-plan.md](test-docs/test-case-plan.md) — find your assigned TC range
-3. Read [AI-GUIDE.md](AI-GUIDE.md) — patterns, pitfalls, complete workflow, required reading list
-4. Create your branch: `git checkout -b tc/<your-name>/<TC-range>`
-5. Write tests, compile, run, document, commit, push, open PR
+1. Read [TASK-BRIEF.md](TASK-BRIEF.md) — your assignment, workflow checklist, reference examples
+2. Read [test-docs/test-case-plan.md](test-docs/test-case-plan.md) — find your exact TC range and methods
+3. Read [CONTRIBUTING.md](CONTRIBUTING.md) — commit rules, branch naming, PR process
+4. Read [AI-GUIDE.md](AI-GUIDE.md) — code patterns, pitfalls, complete workflow details
+5. Create your branch: `git checkout -b tc/<your-name>/<TC-range>`
+6. Write tests, compile, run, document, commit, push, open PR
 
-> **For AI assistants**: Feed [AI-GUIDE.md](AI-GUIDE.md) into your context before writing any code.
+> **For AI assistants**: Feed [AI-PROMPT.md](AI-PROMPT.md) + [AI-GUIDE.md](AI-GUIDE.md) into your context before writing any code.
 
 ## Directory Structure
 
 ```
 legado-mobile-testing/
 ├── README.md                    # Project overview
+├── TASK-BRIEF.md                 # Task brief & checklist for team members
+├── AI-PROMPT.md                  # Ready-to-use prompt for AI assistants
 ├── CONTRIBUTING.md              # Commit rules, branch naming, PR process
-├── AI-GUIDE.md                  # AI collaboration guide (setup, patterns, pitfalls)
+├── AI-GUIDE.md                  # AI collaboration guide (patterns, pitfalls)
 ├── .gitignore                   # Git ignore rules
 ├── .gitattributes               # Line ending normalization
 ├── .github/                     # CI workflow & PR template

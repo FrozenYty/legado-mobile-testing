@@ -154,10 +154,11 @@ test-docs/test-summary-report.md
 
 1. Push your branch: `git push -u origin tc/your-name/TC007-012`
 2. Create a PR on GitHub from your branch to `main`
-3. PR title: `<Module Name> — <Your Name>` (e.g., "Reading Experience — Jane Smith")
-4. PR description: list each TC-ID with status (Passed / Partial / Failed)
-5. **At least one other team member must review before merge**
-6. Squash-merge into `main` (use GitHub's "Squash and merge" button)
+3. The PR template (`.github/pull_request_template.md`) loads automatically — fill in all sections
+4. PR title: `<Module Name> — <Your Name>` (e.g., "Reading Experience — Jane Smith")
+5. PR description: list each TC-ID with status (Passed / Partial / Failed)
+6. **At least one other team member must review before merge**
+7. Squash-merge into `main` (use GitHub's "Squash and merge" button)
 
 ## What NOT to Do
 

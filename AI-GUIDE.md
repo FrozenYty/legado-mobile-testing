@@ -120,7 +120,7 @@ git checkout -b tc/jane-smith/TC007-012
 git push -u origin tc/jane-smith/TC007-012
 ```
 
-Then open a PR on GitHub. The PR template will load automatically — fill in all sections.
+Then open a PR on GitHub. The PR template (`.github/pull_request_template.md`) loads automatically — fill in all sections.
 
 ### Red Flags
 
