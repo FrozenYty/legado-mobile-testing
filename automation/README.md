@@ -15,7 +15,8 @@ app-under-test/legado-master/app/src/
 │   ├── performance/      ← Benchmark tests
 │   └── utils/            ← Shared utilities (TestHelper.kt)
 └── test/java/io/legado/app/
-    └── unit/              ← JUnit unit tests
+    ├── unit/              ← JUnit unit tests
+    └── manual/            ← Manually executed test code
 ```
 
 ## Test Methods at a Glance

@@ -50,6 +50,8 @@ class TC001_AppLaunchTest {
         onView(withId(R.id.bottom_navigation_view))
             .check(matches(isDisplayed()))
 
+        TestHelper.saveScreenshot("tc001-launch-bookshelf")
+
         // Verify the main view pager is visible (hosts bookshelf fragment)
         onView(withId(R.id.view_pager_main))
             .check(matches(isDisplayed()))

@@ -32,7 +32,7 @@ Use this template for every bug found during testing.
 [What actually happened]
 
 ### Screenshots / Logs
-[Attach or link]
+Place screenshot files in `screenshots/` and reference them here, or attach logcat output.
 
 ### Notes
 [Any additional context]

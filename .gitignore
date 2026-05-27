@@ -19,5 +19,4 @@ local.properties
 Thumbs.db
 *.log
 
-# Test artifacts
-screenshots/*.png
+# Test artifacts (screenshots are test evidence — commit intentionally)

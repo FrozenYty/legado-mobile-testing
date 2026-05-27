@@ -65,7 +65,7 @@ fix stuff
 | Test docs (`.md`) | `local.properties` |
 | Test runner scripts | `.gradle/`, `build/` |
 | `libs.versions.toml` changes | `.apk`, `.aab`, `.jks` |
-| | Screenshots (`.png` — gitignored) |
+| Screenshots as test evidence (`.png`) — quality over quantity | |
 
 ### Before Committing
 

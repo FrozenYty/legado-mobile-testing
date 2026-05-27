@@ -67,5 +67,7 @@ class TC003_OpenBookReadTest {
     fun openBook_shouldDisplayReadingView() {
         onView(withId(R.id.read_view))
             .check(matches(isDisplayed()))
+
+        TestHelper.saveScreenshot("tc003-reading-view")
     }
 }

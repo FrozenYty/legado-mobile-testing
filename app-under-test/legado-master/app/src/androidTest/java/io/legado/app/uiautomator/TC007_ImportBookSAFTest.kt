@@ -109,7 +109,8 @@ class TC007_ImportBookSAFTest {
         // Step 4: If picker opened, verify we can see the test file.
         // The file picker may or may not show files depending on state.
         if (pickerOpened) {
-            // System file picker is visible — cross-app interaction works
+            // System file picker is visible — capture cross-app evidence
+            TestHelper.saveScreenshot("tc007-saf-file-picker")
             device.pressBack() // dismiss the picker
             device.waitForIdle(1000)
         }

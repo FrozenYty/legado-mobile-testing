@@ -201,7 +201,7 @@ app-under-test/legado-master/app/src/
 │   └── *.kt             ← Legacy app tests (do NOT modify)
 ├── test/java/io/legado/app/
 │   ├── unit/            ← JUnit unit tests (no Android dependency)
-│   ├── manual/          ← Reserved for future use
+│   ├── manual/          ← Manually executed test code
 │   └── *.kt             ← Legacy app tests (do NOT modify)
 └── main/java/io/legado/app/  ← App source (read-only reference)
 
@@ -351,6 +351,73 @@ Located at `app/src/androidTest/java/io/legado/app/utils/TestHelper.kt`
 
 7. **SearchActivity Not Exported**
    → `SearchActivity` has no `android:exported="true"` and cannot be launched via `am start` or direct intent from outside the app. Use `MainActivity` → overflow menu → search instead.
+
+## Capturing Screenshots
+
+Screenshots are test evidence. Store them in `screenshots/` at the project root and reference them
+in bug reports, manual test results, or TC documentation.
+
+### Quality Principle — Better None Than Junk
+
+**Do not screenshot every test step.** A screenshot is only worth committing when it
+captures a meaningful, non-duplicate UI state that serves as evidence. Before adding a
+`savescreenshot()` call, ask: "Would a reviewer look at this image and learn something
+they couldn't get from the test assertion alone?"
+
+Review every screenshot before you commit. If you can't justify it in one sentence, delete it.
+
+#### Good reasons to capture
+
+| Scenario | Example |
+|----------|---------|
+| Bug evidence | Crash dialog, layout glitch, incorrect text |
+| Unique UI state | Bookshelf, reading view, search menu — one per distinct screen |
+| Cross-app interaction | SAF file picker, system permission dialog |
+| Visual regression | Before/after a theme or layout change |
+
+#### Do NOT capture
+
+- Duplicate views already covered by another TC screenshot
+- Transient states (loading spinners, fade-in animations)
+- Test code output or logcat (use `bug-reports/` for that)
+- Blank or partially-loaded screens
+- Every step of a multi-step test — pick the final state or the most meaningful one
+
+### Recommended: TestHelper.saveScreenshot() (instrumented tests only)
+
+```kotlin
+// Call AFTER verifying the UI state you want to capture
+TestHelper.saveScreenshot("tc001-launch-bookshelf")
+```
+
+Uses `UiAutomation.takeScreenshot()` internally. Saves to the app's external files directory.
+Pull files after test run:
+
+```bash
+# Windows (Git Bash):
+MSYS2_ARG_CONV_EXCL="*" adb pull /sdcard/Android/data/io.legado.app.debug/files/screenshots/ ./screenshots/
+
+# macOS / Linux:
+adb pull /sdcard/Android/data/io.legado.app.debug/files/screenshots/ ./screenshots/
+```
+
+### UIAutomator (cross-app, includes system UI)
+
+```kotlin
+val device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
+val file = File("/sdcard/Pictures/screenshot.png")
+device.takeScreenshot(file)
+```
+
+### adb (script-based, no test code needed)
+
+```bash
+adb exec-out screencap -p > screenshots/manual-tc010-first-launch.png
+```
+
+### Naming convention
+
+`<tc-id>-<short-description>.png` — e.g., `tc001-launch-bookshelf.png`, `tc007-saf-file-picker.png`
 
 ## Extending the Plan
 

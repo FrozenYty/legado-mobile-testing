@@ -87,5 +87,7 @@ class TC006_BookshelfSearchTest {
         )
         onView(withId(R.id.menu_search))
             .check(matches(isDisplayed()))
+
+        TestHelper.saveScreenshot("tc006-search-menu")
     }
 }

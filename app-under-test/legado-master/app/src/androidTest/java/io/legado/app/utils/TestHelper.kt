@@ -1,15 +1,20 @@
 package io.legado.app.utils
 
+import android.graphics.Bitmap
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.platform.app.InstrumentationRegistry
 import io.legado.app.data.appDb
 import io.legado.app.data.entities.Book
 import io.legado.app.data.entities.BookChapter
+import java.io.File
 
 /**
- * Utility helpers for Legado Espresso tests.
+ * Utility helpers for Legado tests.
  * Provides common setup/teardown methods shared across test classes.
+ *
+ * @author Tianyu Yao
  */
 object TestHelper {
 
@@ -86,5 +91,29 @@ object TestHelper {
         }
 
         return bookUrl
+    }
+
+    /**
+     * Capture a screenshot of the current screen and save it to the device.
+     * Screenshots are best-effort test evidence — failures are silently ignored
+     * so they never break a test run.
+     *
+     * Files are saved to the app's external files directory. Pull them with:
+     *   adb pull /sdcard/Android/data/io.legado.app.debug/files/screenshots/ ../../../../screenshots/
+     */
+    fun saveScreenshot(name: String) {
+        try {
+            val bitmap = InstrumentationRegistry.getInstrumentation()
+                .uiAutomation
+                .takeScreenshot()
+            val context = InstrumentationRegistry.getInstrumentation().targetContext
+            val dir = File(context.getExternalFilesDir(null), "screenshots")
+            dir.mkdirs()
+            File(dir, "$name.png").outputStream().use { out ->
+                bitmap.compress(Bitmap.CompressFormat.PNG, 90, out)
+            }
+        } catch (_: Exception) {
+            // Screenshot is best-effort evidence, not a test assertion
+        }
     }
 }
