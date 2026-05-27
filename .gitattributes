@@ -10,8 +10,9 @@
 
 # Scripts — always LF
 *.sh    text eol=lf
+gradlew text eol=lf
 
-# Documentation — LF preferred
+# Documentation & config — LF preferred
 *.md    text eol=lf
 *.yml   text eol=lf
 
@@ -22,3 +23,6 @@
 *.aab   binary
 *.jks   binary
 *.keystore binary
+*.dex   binary
+*.class binary
+*.jar   binary
