@@ -27,8 +27,8 @@
 |----------|-------|
 | Critical | 0 |
 | High | 0 |
-| Medium | 0 |
-| Low | 0 |
+| Medium | 1 (BUG-003) |
+| Low | 1 (BUG-002) |
 
 ## Key Findings
 
