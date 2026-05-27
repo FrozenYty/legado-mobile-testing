@@ -117,14 +117,19 @@ git push -u origin tc/jane-smith/TC007-012
 
 Then open a PR on GitHub. The PR template will load automatically — fill in all sections.
 
-### Red Flags (stop and ask)
+### Red Flags
 
-- ❌ You want to modify `build.gradle` or `libs.versions.toml` → discuss with team first
-- ❌ You want to change files in `app/src/main/` → not allowed, tests only
-- ❌ You want to commit generated files (`.class`, `.dex`, build outputs) → add to `.gitignore` instead
-- ❌ You're about to `git add -A` → don't, stage files individually
-- ❌ Compilation fails after your changes → fix before committing
-- ❌ Tests fail consistently (not flaky) → investigate root cause, don't force-commit
+| Level | Rule |
+|-------|------|
+| 🔴 Hard no | Changing `app/src/main/` — never modify app source code |
+| 🔴 Hard no | Committing generated files (`.class`, `.dex`, build outputs) |
+| 🔴 Hard no | Using `git add -A` — stage files individually |
+| 🟡 Needs PR note | Modifying `build.gradle` or `libs.versions.toml` — explain why in PR description |
+| 🟡 Needs fix | Compilation fails — fix before committing |
+| 🟡 Needs fix | Tests fail consistently — don't force-commit, investigate first |
+| 🟢 Always OK | Adding test files, updating docs, adding test-only dependencies |
+
+For 🟡 items, the team lead can approve the change. Document the reason.
 
 ## Environment Setup
 

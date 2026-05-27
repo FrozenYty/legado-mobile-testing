@@ -131,6 +131,7 @@ test-docs/test-summary-report.md
 - **No commented-out code**: Delete it, don't comment it out
 - **Follow existing patterns**: Open `TC001_AppLaunchTest.kt` as your reference
 - **Don't modify app source**: `app-under-test/legado-master/app/src/main/` is read-only. Tests only go in `androidTest/` or `test/`.
+- **Test dependencies OK**: Adding test-only deps to `libs.versions.toml` or `build.gradle` is allowed. Explain the reason in your PR description.
 
 ## Pull Request Process
 
@@ -146,8 +147,8 @@ test-docs/test-summary-report.md
 - ❌ Don't `git push --force` to `main`
 - ❌ Don't commit directly to `main` (always use a branch + PR)
 - ❌ Don't modify other people's test files without asking
-- ❌ Don't change `build.gradle`, `settings.gradle`, or `libs.versions.toml` without team discussion
-- ❌ Don't add new dependencies without documenting why in the PR description
+- ❌ Don't change `settings.gradle` without team discussion
+- ❌ Test-only changes to `build.gradle` or `libs.versions.toml` are OK — just document the reason in PR
 - ❌ Don't commit generated files (build outputs, `.class`, `.dex`)
 - ❌ Don't change the test method distribution in `test-case-plan.md` — add new cases instead
 
