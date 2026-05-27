@@ -209,8 +209,11 @@ test-docs/
 ├── test-plan.md              ← Overall test strategy & scope
 ├── test-case-plan.md         ← Assignment plan (authoritative for TC ranges)
 ├── test-cases.md             ← Detailed test case specs
-├── bug-report-template.md    ← Bug report format
+├── bug-report-template.md    ← Template for filing bugs
 └── test-summary-report.md    ← Final report template
+
+bug-reports/
+└── bug-XXX.md                ← Filed bug reports (use bug-report-template.md)
 
 automation/
 ├── run-tests.sh              ← CLI test runner script
