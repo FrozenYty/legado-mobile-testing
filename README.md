@@ -26,6 +26,7 @@ legado-mobile-testing/
 ├── CONTRIBUTING.md              # Commit rules, branch naming, PR process
 ├── AI-GUIDE.md                  # AI collaboration guide (setup, patterns, pitfalls)
 ├── .gitignore                   # Git ignore rules
+├── .gitattributes               # Line ending normalization
 ├── app-under-test/              # Application source code under test
 │   └── legado-master/           # Legado Android source
 │       └── app/src/
@@ -37,7 +38,7 @@ legado-mobile-testing/
 │           │   └── utils/       # Shared test utilities
 │           └── test/java/io/legado/app/
 │               ├── unit/        # JUnit unit tests
-│               └── manual/      # Reserved
+│               └── manual/      # Manually executed test code
 ├── test-docs/                   # Test documentation
 │   ├── test-plan.md             # Overall test strategy & scope
 │   ├── test-case-plan.md        # TC assignment plan & method distribution
@@ -48,7 +49,7 @@ legado-mobile-testing/
 │   ├── bug-001.md               # Example bug report
 │   ├── bug-002.md               # SearchActivity not exported
 │   └── bug-003.md               # ReadBookActivity local-origin redirect
-├── screenshots/                 # Test evidence screenshots
+├── screenshots/                 # Test evidence screenshots (README + PNGs)
 ├── automation/                  # Test runner scripts & config
 │   ├── README.md                # Automation overview
 │   └── run-tests.sh             # CLI test runner
