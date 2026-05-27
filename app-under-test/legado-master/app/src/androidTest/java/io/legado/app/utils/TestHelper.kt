@@ -1,4 +1,4 @@
-package io.legado.app.espresso
+package io.legado.app.utils
 
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click

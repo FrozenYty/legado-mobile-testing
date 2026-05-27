@@ -9,9 +9,13 @@ Test code for the Legado Mobile Testing project.
 ```
 app-under-test/legado-master/app/src/
 ├── androidTest/java/io/legado/app/
-│   ├── espresso/         ← Espresso & UIAutomator tests
-│   └── *.kt              ← Integration tests (Room, ContentProvider)
-└── test/java/io/legado/app/   ← Unit tests (JUnit + Mockito)
+│   ├── espresso/         ← Espresso UI tests
+│   ├── uiautomator/      ← UIAutomator tests
+│   ├── integration/      ← Room, ContentProvider tests
+│   ├── performance/      ← Benchmark tests
+│   └── utils/            ← Shared utilities (TestHelper.kt)
+└── test/java/io/legado/app/
+    └── unit/              ← JUnit unit tests
 ```
 
 ## Test Methods at a Glance
@@ -19,9 +23,9 @@ app-under-test/legado-master/app/src/
 | Method | Source Directory | When to Use |
 |--------|-----------------|-------------|
 | Espresso | `.../espresso/` | In-app UI: click views, type text, check visibility |
-| UIAutomator | `.../espresso/` | System UI: SAF picker, notifications, cross-app flows |
-| Unit Test | `.../test/` | No-Android logic: ViewModels, parsers, config |
-| Integration Test | `.../androidTest/` (root) | DB migrations, DAO queries, ContentProvider |
+| UIAutomator | `.../uiautomator/` | System UI: SAF picker, notifications, cross-app flows |
+| Unit Test | `.../test/unit/` | No-Android logic: ViewModels, parsers, config |
+| Integration Test | `.../integration/` | DB migrations, DAO queries, ContentProvider |
 
 ## Running Tests
 
@@ -48,7 +52,8 @@ cd app-under-test/legado-master
 ### Via Script
 
 ```bash
-./automation/run-tests.sh        # All 6 core tests
+./automation/run-tests.sh        # All instrumented tests
+./automation/run-tests.sh --unit # Run unit tests
 ./automation/run-tests.sh TC001  # Single test class
 ```
 
@@ -73,9 +78,11 @@ cd app-under-test/legado-master
 
 Key existing files (reference examples):
 
-| File | What It Demonstrates |
-|------|---------------------|
-| `TestHelper.kt` | Shared test data setup/cleanup, dialog dismissal |
-| `TC001_AppLaunchTest.kt` | Basic Espresso: launch Activity, check views |
-| `TC003_OpenBookReadTest.kt` | Database setup: insert test book, launch with Intent |
-| `TC006_BookshelfSearchTest.kt` | Overflow menu: open menu, check menu items |
+| File | Package | What It Demonstrates |
+|------|---------|---------------------|
+| `utils/TestHelper.kt` | `utils/` | Shared test data setup/cleanup, dialog dismissal |
+| `TC001_AppLaunchTest.kt` | `espresso/` | Basic Espresso: launch Activity, check views |
+| `TC003_OpenBookReadTest.kt` | `espresso/` | DB setup: insert test book, launch with Intent |
+| `TC007_ImportBookSAFTest.kt` | `uiautomator/` | UIAutomator: cross-app system UI interaction |
+| `TC008_BookEntityTest.kt` | `test/unit/` | Unit test: entity fields & constants (no Android) |
+| `TC009_DatabaseMigrationTest.kt` | `integration/` | Room: migration testing with MigrationTestHelper |

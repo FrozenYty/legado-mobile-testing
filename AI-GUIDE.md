@@ -24,7 +24,7 @@ Before writing any code, open these files in order:
 | 1 | `CONTRIBUTING.md` | Branch naming, commit format, PR rules, what NOT to do |
 | 2 | `test-docs/test-case-plan.md` | Find your TC-ID range, module, and required testing methods |
 | 3 | `test-docs/test-cases.md` | See existing TC specs for format reference |
-| 4 | `app/.../espresso/TestHelper.kt` | Understand shared utilities before using them |
+| 4 | `app/.../utils/TestHelper.kt` | Understand shared utilities before using them |
 | 5 | `app/.../espresso/TC001_AppLaunchTest.kt` | Reference Espresso pattern (simplest working example) |
 | 6 | `app/.../espresso/TC003_OpenBookReadTest.kt` | Reference pattern for tests that need DB setup |
 
@@ -51,7 +51,12 @@ When you receive a TC assignment, execute these steps in order. Do NOT skip step
 
 ```bash
 cd app-under-test/legado-master
+
+# For instrumented tests (Espresso, UIAutomator, Integration):
 ./gradlew :app:compileAppDebugAndroidTestSources
+
+# For unit tests (JUnit):
+./gradlew :app:compileAppDebugUnitTestSources
 ```
 
 Fix all compilation errors. Do NOT proceed until this passes.
@@ -188,12 +193,20 @@ with system UI (file picker, TTS settings) should be verified on the target emul
 ```
 app-under-test/legado-master/app/src/
 ├── androidTest/java/io/legado/app/
-│   ├── espresso/        ← Espresso & UIAutomator tests
-│   └── *.kt             ← Integration tests (Room, ContentProvider)
-├── test/java/io/legado/app/  ← Unit tests (JUnit, Mockito)
+│   ├── espresso/        ← Espresso UI tests (in-app clicks, ViewActions)
+│   ├── uiautomator/     ← UIAutomator tests (cross-app, system UI)
+│   ├── integration/     ← Room DB, ContentProvider integration tests
+│   ├── performance/     ← Benchmark tests (startup time, memory)
+│   ├── utils/           ← Shared test utilities (TestHelper.kt)
+│   └── *.kt             ← Legacy app tests (do NOT modify)
+├── test/java/io/legado/app/
+│   ├── unit/            ← JUnit unit tests (no Android dependency)
+│   ├── manual/          ← Reserved for future use
+│   └── *.kt             ← Legacy app tests (do NOT modify)
 └── main/java/io/legado/app/  ← App source (read-only reference)
 
 test-docs/
+├── test-plan.md              ← Overall test strategy & scope
 ├── test-case-plan.md         ← Assignment plan (authoritative for TC ranges)
 ├── test-cases.md             ← Detailed test case specs
 ├── bug-report-template.md    ← Bug report format
@@ -268,7 +281,7 @@ class TCXXX_TitleTest {
 ### Pattern 3: Unit Test (no Android dependency)
 
 ```kotlin
-// File: app/src/test/java/io/legado/app/XXXTest.kt
+// File: app/src/test/java/io/legado/app/unit/XXXTest.kt
 class XXXTest {
     @Test
     fun methodName_scenario_expectedBehavior() {
@@ -304,7 +317,7 @@ class XXXTest {
 
 ## Shared Utilities: TestHelper
 
-Located at `app/src/androidTest/java/io/legado/app/espresso/TestHelper.kt`
+Located at `app/src/androidTest/java/io/legado/app/utils/TestHelper.kt`
 
 | Method | What it does |
 |--------|-------------|

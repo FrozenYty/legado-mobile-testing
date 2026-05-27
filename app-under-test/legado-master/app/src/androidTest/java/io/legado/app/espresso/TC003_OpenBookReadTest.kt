@@ -9,6 +9,7 @@ import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.legado.app.R
+import io.legado.app.utils.TestHelper
 import io.legado.app.ui.book.read.ReadBookActivity
 import org.junit.After
 import org.junit.Before

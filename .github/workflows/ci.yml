@@ -28,8 +28,12 @@ jobs:
       - name: Cache Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Compile test sources
+      - name: Compile instrumented test sources
         working-directory: app-under-test/legado-master
         run: |
           chmod +x gradlew
           ./gradlew :app:compileAppDebugAndroidTestSources
+
+      - name: Compile unit test sources
+        working-directory: app-under-test/legado-master
+        run: ./gradlew :app:compileAppDebugUnitTestSources

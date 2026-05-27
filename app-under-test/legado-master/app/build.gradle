@@ -161,6 +161,7 @@ dependencies {
     coreLibraryDesugaring(libs.desugar)
     testImplementation(libs.junit)
     androidTestImplementation(libs.bundles.androidTest)
+    androidTestImplementation(libs.androidx.uiautomator)
     //kotlin
     //noinspection GradleDependency,DifferentStdlibGradleVersion
     implementation(libs.kotlin.stdlib)

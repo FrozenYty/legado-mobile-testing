@@ -71,7 +71,8 @@ fix stuff
 
 ```bash
 # 1. Verify your tests compile
-./gradlew :app:compileAppDebugAndroidTestSources
+./gradlew :app:compileAppDebugAndroidTestSources   # instrumented tests
+./gradlew :app:compileAppDebugUnitTestSources       # unit tests
 
 # 2. Check what you're about to commit
 git status
@@ -90,15 +91,26 @@ git add path/to/your/docs.md
 ### Test Code
 
 ```
-# Your Espresso or UIAutomator tests go here:
-app-under-test/legado-master/app/src/androidTest/java/io/legado/app/espresso/
+# Your Espresso tests go here:
+app/.../androidTest/java/io/legado/app/espresso/
 
-# Your Unit tests go here:
-app-under-test/legado-master/app/src/test/java/io/legado/app/
+# Your UIAutomator tests go here:
+app/.../androidTest/java/io/legado/app/uiautomator/
 
-# Your Integration tests go here:
-app-under-test/legado-master/app/src/androidTest/java/io/legado/app/
+# Your Integration (Room/ContentProvider) tests go here:
+app/.../androidTest/java/io/legado/app/integration/
+
+# Your Performance tests go here:
+app/.../androidTest/java/io/legado/app/performance/
+
+# Shared test utilities (TestHelper) are here:
+app/.../androidTest/java/io/legado/app/utils/
+
+# Your Unit tests (JUnit, Mockito — no Android) go here:
+app/.../test/java/io/legado/app/unit/
 ```
+
+**Do NOT create new directories.** All folders are pre-created. Drop your files into the correct existing folder.
 
 ### Test Documentation
 
@@ -121,7 +133,12 @@ test-docs/test-summary-report.md
 | Test class | `TC<NNN>_<ShortTitle>Test.kt` | `TC007_ChapterListNavigationTest.kt` |
 | Test method | `descriptiveName_expectedBehavior` | `tapChapter_shouldJumpToChapterContent` |
 | Bug report | `bug-<NNN>.md` | `bug-002.md` |
-| Package | `io.legado.app.espresso` | (same for all automation tests) |
+| Package (Espresso) | `io.legado.app.espresso` | |
+| Package (UIAutomator) | `io.legado.app.uiautomator` | |
+| Package (Integration) | `io.legado.app.integration` | |
+| Package (Unit) | `io.legado.app.unit` | |
+| Package (Performance) | `io.legado.app.performance` | |
+| Package (Utils) | `io.legado.app.utils` | TestHelper only |
 
 ## Code Quality
 

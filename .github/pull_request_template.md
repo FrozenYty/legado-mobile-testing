@@ -21,7 +21,7 @@
 - [ ] Tests compile: `./gradlew :app:compileAppDebugAndroidTestSources` passes
 - [ ] Tests run on emulator or device (if Espresso/UIAutomator)
 - [ ] Test docs updated (`test-cases.md`, `manual-test-result.md`)
-- [ ] No changes to `build.gradle` or `libs.versions.toml` (unless discussed)
+- [ ] If `build.gradle` or `libs.versions.toml` changed, PR description explains why
 - [ ] No changes to app source code in `src/main/`
 - [ ] `@author` tag added to every test class
 - [ ] Branch follows naming convention: `tc/<name>/<TC-range>`

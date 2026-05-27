@@ -25,7 +25,7 @@ This project uses complementary testing methods. Mix and match per test case as 
 
 | Member | Module | Current TC Range |
 |--------|--------|------------------|
-| **Tianyu Yao** (Lead) | Core Foundation | TC-001 ~ TC-010 |
+| **Tianyu Yao** (Lead) | Core Foundation | TC-001 ~ TC-010 | ✅ Done |
 | **Member 2** | Reading Experience | TC-011 ~ TC-020 |
 | **Member 3** | Data & Backend | TC-021 ~ TC-030 |
 | **Member 4** | System & Platform | TC-031 ~ TC-040 |
@@ -120,9 +120,13 @@ This project uses complementary testing methods. Mix and match per test case as 
 ```
 app-under-test/legado-master/app/src/
 ├── androidTest/java/io/legado/app/
-│   ├── espresso/         ← Espresso & UIAutomator test classes
-│   └── *.kt              ← Integration tests (Room, ContentProvider)
-├── test/java/io/legado/app/   ← Unit tests (JUnit + Mockito)
+│   ├── espresso/         ← Espresso UI tests
+│   ├── uiautomator/      ← UIAutomator tests
+│   ├── integration/      ← Room, ContentProvider tests
+│   ├── performance/      ← Benchmark tests
+│   └── utils/            ← Shared utilities (TestHelper.kt)
+├── test/java/io/legado/app/
+│   └── unit/              ← JUnit unit tests
 └── main/java/io/legado/app/   ← App source (read-only reference)
 ```
 

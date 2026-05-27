@@ -60,7 +60,7 @@ Uses a multi-method strategy for broad coverage:
 | Phase | Activity | Status |
 |-------|----------|--------|
 | Test Design | Write test plan, design test cases, assign modules | Completed |
-| Sprint 1 | Core foundation tests (TC-001~006, Espresso) | Completed — Tianyu Yao |
+| Sprint 1 | Core foundation tests (TC-001~010, all methods) | Completed — Tianyu Yao |
 | Sprint 2 | Module A (Reading Experience) + B (Data & Backend) + C (System & Platform) | In Progress — Members 2, 3, 4 |
 | Sprint 3 | Bug fixes, regression, final report | Pending |
 

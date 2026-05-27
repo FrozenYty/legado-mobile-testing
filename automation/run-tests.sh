@@ -1,6 +1,7 @@
 #!/bin/bash
 # =============================================================================
-# Legado Mobile Testing — Espresso Test Runner
+# Legado Mobile Testing — Test Runner
+# Supports Espresso, UIAutomator, Integration, and Unit tests.
 # =============================================================================
 # Prerequisites:
 #   - JAVA_HOME pointing to JDK 17+
@@ -8,8 +9,10 @@
 #   - A running emulator or connected device (adb devices)
 #
 # Usage:
-#   ./automation/run-tests.sh              # Run all 6 test classes
-#   ./automation/run-tests.sh TC001        # Run a single test class
+#   ./automation/run-tests.sh                 # Run all instrumented tests
+#   ./automation/run-tests.sh TC001           # Run a specific test class
+#   ./automation/run-tests.sh --unit          # Run unit tests (no device needed)
+#   ./automation/run-tests.sh --unit TC008    # Run a specific unit test
 # =============================================================================
 
 set -euo pipefail
@@ -27,26 +30,61 @@ if [ -z "${ANDROID_HOME:-}" ]; then
     exit 1
 fi
 
-# Check for connected device/emulator
+# --- Unit test mode -------------------------------------------------
+if [ "${1:-}" = "--unit" ]; then
+    cd "$PROJECT_DIR"
+    if [ $# -ge 2 ]; then
+        ./gradlew :app:testAppDebugUnitTest --tests "io.legado.app.unit.${2}_*"
+    else
+        ./gradlew :app:testAppDebugUnitTest
+    fi
+    exit 0
+fi
+
+# --- Instrumented test mode -----------------------------------------
+# Check for connected device
 DEVICE_COUNT=$("$ANDROID_HOME/platform-tools/adb" devices 2>/dev/null | grep -v "List of devices" | grep -c "device" || echo 0)
 if [ "$DEVICE_COUNT" -eq 0 ]; then
     echo "ERROR: No device/emulator connected" >&2
     exit 1
 fi
 
-# Disable animations for stable Espresso tests
-"$ANDROID_HOME/platform-tools/adb" shell settings put global window_animation_scale 0.0
-"$ANDROID_HOME/platform-tools/adb" shell settings put global transition_animation_scale 0.0
-"$ANDROID_HOME/platform-tools/adb" shell settings put global animator_duration_scale 0.0
+# Disable animations for stable tests
+"$ANDROID_HOME/platform-tools/adb" shell settings put global window_animation_scale 0.0 2>/dev/null
+"$ANDROID_HOME/platform-tools/adb" shell settings put global transition_animation_scale 0.0 2>/dev/null
+"$ANDROID_HOME/platform-tools/adb" shell settings put global animator_duration_scale 0.0 2>/dev/null
 
-BASE_PKG="io.legado.app.espresso"
-
-if [ $# -eq 0 ]; then
-    CLASSES="${BASE_PKG}.TC001_AppLaunchTest,${BASE_PKG}.TC002_ImportLocalBookTest,${BASE_PKG}.TC003_OpenBookReadTest,${BASE_PKG}.TC004_ChangeReadingThemeTest,${BASE_PKG}.TC005_TTSPlaybackTest,${BASE_PKG}.TC006_BookshelfSearchTest"
-else
-    CLASSES="${BASE_PKG}.${1}_*"
-fi
+# Package locations — tests are organized by tool type
+ESPRESSO_PKG="io.legado.app.espresso"
+UIAUTOMATOR_PKG="io.legado.app.uiautomator"
+INTEGRATION_PKG="io.legado.app.integration"
 
 cd "$PROJECT_DIR"
+
+if [ $# -eq 0 ]; then
+    # Run ALL instrumented test classes
+    CLASSES="${ESPRESSO_PKG}.TC001_AppLaunchTest"
+    CLASSES="$CLASSES,${ESPRESSO_PKG}.TC002_ImportLocalBookTest"
+    CLASSES="$CLASSES,${ESPRESSO_PKG}.TC003_OpenBookReadTest"
+    CLASSES="$CLASSES,${ESPRESSO_PKG}.TC004_ChangeReadingThemeTest"
+    CLASSES="$CLASSES,${ESPRESSO_PKG}.TC005_TTSPlaybackTest"
+    CLASSES="$CLASSES,${ESPRESSO_PKG}.TC006_BookshelfSearchTest"
+    CLASSES="$CLASSES,${UIAUTOMATOR_PKG}.TC007_ImportBookSAFTest"
+    CLASSES="$CLASSES,${INTEGRATION_PKG}.TC009_DatabaseMigrationTest"
+else
+    # Try to find the test class in the correct package
+    TC="${1}"
+    CLASSES="${ESPRESSO_PKG}.${TC}_*"
+    # Build command with all packages for wildcard match
+    ./gradlew :app:connectedAppDebugAndroidTest \
+        -Pandroid.testInstrumentationRunnerArguments.class="$CLASSES" \
+        -Pandroid.testInstrumentationRunnerArguments.package="${ESPRESSO_PKG}" 2>&1 || \
+    ./gradlew :app:connectedAppDebugAndroidTest \
+        -Pandroid.testInstrumentationRunnerArguments.class="${UIAUTOMATOR_PKG}.${TC}_*" 2>&1 || \
+    ./gradlew :app:connectedAppDebugAndroidTest \
+        -Pandroid.testInstrumentationRunnerArguments.class="${INTEGRATION_PKG}.${TC}_*" 2>&1
+    exit 0
+fi
+
 ./gradlew :app:connectedAppDebugAndroidTest \
     -Pandroid.testInstrumentationRunnerArguments.class="$CLASSES"

@@ -8,6 +8,16 @@ This repository contains the test documentation, manual test results, bug report
 
 > **Language**: All code, comments, documentation, and commit messages must be written in **English**.
 
+## Getting Started
+
+1. Read [CONTRIBUTING.md](CONTRIBUTING.md) — commit rules, branch naming, PR process
+2. Read [test-docs/test-case-plan.md](test-docs/test-case-plan.md) — find your assigned TC range
+3. Read [AI-GUIDE.md](AI-GUIDE.md) — patterns, pitfalls, complete workflow, required reading list
+4. Create your branch: `git checkout -b tc/<your-name>/<TC-range>`
+5. Write tests, compile, run, document, commit, push, open PR
+
+> **For AI assistants**: Feed [AI-GUIDE.md](AI-GUIDE.md) into your context before writing any code.
+
 ## Directory Structure
 
 ```
@@ -19,11 +29,13 @@ legado-mobile-testing/
 ├── app-under-test/              # Application source code under test
 │   └── legado-master/           # Legado Android source
 │       └── app/src/
-│           ├── androidTest/     # Instrumented tests (Espresso, UIAutomator, Room)
-│           │   └── java/io/legado/app/espresso/
-│           │       ├── TestHelper.kt
-│           │       └── TC*_*Test.kt
-│           └── test/            # Unit tests (JUnit + Mockito)
+│           ├── androidTest/java/io/legado/app/
+│           │   ├── espresso/    # Espresso UI tests
+│           │   ├── uiautomator/ # UIAutomator tests
+│           │   ├── integration/ # Room/ContentProvider tests
+│           │   └── performance/ # Benchmark tests
+│           └── test/java/io/legado/app/
+│               └── unit/        # JUnit unit tests
 ├── test-docs/                   # Test documentation
 │   ├── test-plan.md             # Overall test strategy & scope
 │   ├── test-case-plan.md        # TC assignment plan & method distribution

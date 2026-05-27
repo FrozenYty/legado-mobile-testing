@@ -78,3 +78,57 @@
 | **Expected Result** | Matching books filtered, non-matching hidden |
 | **Status** | **Passed** — by Tianyu Yao on 2026-05-27 |
 | **Automation** | `TC006_BookshelfSearchTest.kt` — Espresso UI test |
+
+---
+
+## TC-007: Import Book via SAF File Picker
+
+| Field | Detail |
+|-------|--------|
+| **Priority** | High |
+| **Precondition** | A .txt test file pushed to /sdcard/Download/ |
+| **Steps** | 1. Launch app <br> 2. Open bookshelf overflow menu, tap import <br> 3. System SAF file picker opens <br> 4. File is selectable via UIAutomator |
+| **Expected Result** | System file picker opens, cross-app interaction verified via UIAutomator |
+| **Status** | **Passed** — by Tianyu Yao on 2026-05-27 |
+| **Automation** | `TC007_ImportBookSAFTest.kt` — UIAutomator cross-app test |
+| **Note** | Full file-selection automation depends on DocumentsUI version; varies by device. |
+
+---
+
+## TC-008: Book Entity & DAO Validation
+
+| Field | Detail |
+|-------|--------|
+| **Priority** | High |
+| **Precondition** | None (pure JUnit, no Android dependency) |
+| **Steps** | 1. Verify Book entity field defaults <br> 2. Verify BookType constants <br> 3. Verify BookChapter entity fields |
+| **Expected Result** | All entity fields have correct defaults; BookType constants match specification |
+| **Status** | **Passed** (15/15 assertions) — by Tianyu Yao on 2026-05-27 |
+| **Automation** | `TC008_BookEntityTest.kt` — Unit test (JUnit 4, no Android) |
+
+---
+
+## TC-009: Database Migration Integrity
+
+| Field | Detail |
+|-------|--------|
+| **Priority** | Medium |
+| **Precondition** | AppDatabase at version 50 with test data |
+| **Steps** | 1. Create database at version 50 <br> 2. Insert a test book <br> 3. Run all migrations to latest version (75) <br> 4. Verify book data survives migration |
+| **Expected Result** | All migrations execute without error; test data remains intact |
+| **Status** | **Passed** — by Tianyu Yao on 2026-05-27 |
+| **Automation** | `TC009_DatabaseMigrationTest.kt` — Room MigrationTestHelper integration test |
+
+---
+
+## TC-010: First-Launch User Flow
+
+| Field | Detail |
+|-------|--------|
+| **Priority** | Medium |
+| **Precondition** | Fresh app install (clear data via `pm clear io.legado.app.debug`) |
+| **Steps** | 1. Launch app for the first time <br> 2. Observe the welcome/splash screen <br> 3. Accept the privacy consent dialog <br> 4. Skip the local password setup dialog <br> 5. Verify the main bookshelf screen appears <br> 6. Explore the bottom navigation tabs |
+| **Expected Result** | All startup dialogs are clear and functional; main screen loads without crash |
+| **Status** | **Passed** — by Tianyu Yao on 2026-05-27 (manually verified on MuMu emulator) |
+| **Automation** | N/A — Manual exploratory test |
+| **Note** | These dialogs appear only on first launch. They are handled automatically by `TestHelper.dismissStartupDialogs()` in automated tests. |
