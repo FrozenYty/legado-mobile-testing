@@ -37,3 +37,7 @@ jobs:
       - name: Compile unit test sources
         working-directory: app-under-test/legado-master
         run: ./gradlew :app:compileAppDebugUnitTestSources
+
+      - name: Run unit tests
+        working-directory: app-under-test/legado-master
+        run: ./gradlew :app:testAppDebugUnitTest

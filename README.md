@@ -27,6 +27,7 @@ legado-mobile-testing/
 ├── AI-GUIDE.md                  # AI collaboration guide (setup, patterns, pitfalls)
 ├── .gitignore                   # Git ignore rules
 ├── .gitattributes               # Line ending normalization
+├── .github/                     # CI workflow & PR template
 ├── app-under-test/              # Application source code under test
 │   └── legado-master/           # Legado Android source
 │       └── app/src/
@@ -45,16 +46,10 @@ legado-mobile-testing/
 │   ├── test-cases.md            # Detailed test case specifications
 │   ├── bug-report-template.md   # Template for filing bugs
 │   └── test-summary-report.md   # Final test summary
-├── bug-reports/                 # Filed bug reports
-│   ├── bug-001.md               # Example bug report
-│   ├── bug-002.md               # SearchActivity not exported
-│   └── bug-003.md               # ReadBookActivity local-origin redirect
-├── screenshots/                 # Test evidence screenshots (README + PNGs)
+├── bug-reports/                 # Filed bug reports (bug-XXX.md)
+├── screenshots/                 # Test evidence screenshots
 ├── automation/                  # Test runner scripts & config
-│   ├── README.md                # Automation overview
-│   └── run-tests.sh             # CLI test runner
 └── test-results/                # Test execution results
-    └── manual-test-result.md    # Manual test pass/fail records
 ```
 
 ## Test Scope
