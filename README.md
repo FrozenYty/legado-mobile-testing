@@ -33,9 +33,11 @@ legado-mobile-testing/
 │           │   ├── espresso/    # Espresso UI tests
 │           │   ├── uiautomator/ # UIAutomator tests
 │           │   ├── integration/ # Room/ContentProvider tests
-│           │   └── performance/ # Benchmark tests
+│           │   ├── performance/ # Benchmark tests
+│           │   └── utils/       # Shared test utilities
 │           └── test/java/io/legado/app/
-│               └── unit/        # JUnit unit tests
+│               ├── unit/        # JUnit unit tests
+│               └── manual/      # Reserved
 ├── test-docs/                   # Test documentation
 │   ├── test-plan.md             # Overall test strategy & scope
 │   ├── test-case-plan.md        # TC assignment plan & method distribution
@@ -43,7 +45,9 @@ legado-mobile-testing/
 │   ├── bug-report-template.md   # Template for filing bugs
 │   └── test-summary-report.md   # Final test summary
 ├── bug-reports/                 # Filed bug reports
-│   └── bug-001.md               # Example bug report
+│   ├── bug-001.md               # Example bug report
+│   ├── bug-002.md               # SearchActivity not exported
+│   └── bug-003.md               # ReadBookActivity local-origin redirect
 ├── screenshots/                 # Test evidence screenshots
 ├── automation/                  # Test runner scripts & config
 │   ├── README.md                # Automation overview
