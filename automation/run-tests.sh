@@ -1,18 +1,19 @@
 #!/bin/bash
 # =============================================================================
-# Legado Mobile Testing — Test Runner
+# ARCHIVED — Legado Mobile Testing Test Runner
+# All paths, package names, and test class names reference the historical
+# Legado project. The app-under-test/ directory has been removed.
+# See ../NOTICE.md
+#
+# This script is preserved as a template for the replacement project.
+# Replace PROJECT_DIR, package names, and class lists with new values.
+# =============================================================================
 # Supports Espresso, UIAutomator, Integration, and Unit tests.
 # =============================================================================
 # Prerequisites:
 #   - JAVA_HOME pointing to JDK 17+
 #   - ANDROID_HOME pointing to Android SDK
 #   - A running emulator or connected device (adb devices)
-#
-# Usage:
-#   ./automation/run-tests.sh                 # Run all instrumented tests
-#   ./automation/run-tests.sh TC001           # Run a specific test class
-#   ./automation/run-tests.sh --unit          # Run unit tests (no device needed)
-#   ./automation/run-tests.sh --unit TC008    # Run a specific unit test
 # =============================================================================
 
 set -euo pipefail

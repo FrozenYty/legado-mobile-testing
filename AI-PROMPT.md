@@ -1,5 +1,8 @@
 # AI Prompt — Legado Mobile Testing
 
+> **ARCHIVED** — Template preserved for reference. See [NOTICE.md](NOTICE.md).
+> Update package names, file paths, and TC assignments for the new project.
+
 Copy this entire message and send it to your AI assistant (Claude, ChatGPT, etc.).
 
 ---

@@ -1,7 +1,9 @@
 # Automation
 
-Test code for the Legado Mobile Testing project.
-
+> **ARCHIVED** — All paths, package names, and file references are from the historical
+> Legado project. The app-under-test/ directory has been removed. See [NOTICE.md](../NOTICE.md).
+> Preserved as a template for the replacement project.
+>
 > **Language**: All code, comments, and documentation in **English**.
 
 ## Test Source Locations
