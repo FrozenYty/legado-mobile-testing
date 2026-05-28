@@ -1,66 +1,52 @@
-# Legado Mobile Testing
+# Mobile Testing Project
 
-A structured mobile testing project for the [Legado](https://github.com/gedoor/legado) Android application — an open-source e-book reader.
+A university coursework project for structured Android mobile testing.
+
+> **Compliance Notice**: This repository previously contained test code for the Legado Android app.
+> On learning of copyright infringement issues, all app source, test code, bug reports, and
+> screenshots targeting Legado were removed. See [NOTICE.md](NOTICE.md).
+>
+> **Language**: All code, comments, documentation, and commit messages must be written in **English**.
 
 ## Overview
 
-This repository contains the test documentation, manual test results, bug reports, screenshots, and automation setup for testing the Legado Android app. The app-under-test source code is included as a Git submodule reference for traceability.
-
-> **Language**: All code, comments, documentation, and commit messages must be written in **English**.
+This repository contains the test documentation, CI configuration, collaboration guides, and
+automation setup for a mobile testing course project. The testing methodology and documentation
+infrastructure are application-agnostic and will be reused for a new app-under-test (TBD).
 
 ## Getting Started
 
-1. Read [TASK-BRIEF.md](TASK-BRIEF.md) — your assignment, workflow checklist, reference examples
-2. Read [test-docs/test-case-plan.md](test-docs/test-case-plan.md) — find your exact TC range and methods
+1. Read [NOTICE.md](NOTICE.md) — understand the project's current status
+2. Read [TASK-BRIEF.md](TASK-BRIEF.md) — workflow checklist and reference examples
 3. Read [CONTRIBUTING.md](CONTRIBUTING.md) — commit rules, branch naming, PR process
 4. Read [AI-GUIDE.md](AI-GUIDE.md) — code patterns, pitfalls, complete workflow details
-5. Create your branch: `git checkout -b tc/<your-name>/<TC-range>`
-6. Write tests, compile, run, document, commit, push, open PR
+5. Read [test-docs/test-case-plan.md](test-docs/test-case-plan.md) — TC assignment plan
 
 > **For AI assistants**: Feed [AI-PROMPT.md](AI-PROMPT.md) + [AI-GUIDE.md](AI-GUIDE.md) into your context before writing any code.
 
 ## Directory Structure
 
 ```
-legado-mobile-testing/
-├── README.md                    # Project overview
-├── TASK-BRIEF.md                 # Task brief & checklist for team members
-├── AI-PROMPT.md                  # Ready-to-use prompt for AI assistants
-├── CONTRIBUTING.md              # Commit rules, branch naming, PR process
-├── AI-GUIDE.md                  # AI collaboration guide (patterns, pitfalls)
-├── .gitignore                   # Git ignore rules
-├── .gitattributes               # Line ending normalization
+├── README.md
+├── NOTICE.md                    # Compliance notice (read first)
+├── TASK-BRIEF.md
+├── AI-PROMPT.md
+├── CONTRIBUTING.md
+├── AI-GUIDE.md
+├── .gitignore
+├── .gitattributes
 ├── .github/                     # CI workflow & PR template
-├── app-under-test/              # Application source code under test
-│   └── legado-master/           # Legado Android source
-│       └── app/src/
-│           ├── androidTest/java/io/legado/app/
-│           │   ├── espresso/    # Espresso UI tests
-│           │   ├── uiautomator/ # UIAutomator tests
-│           │   ├── integration/ # Room/ContentProvider tests
-│           │   ├── performance/ # Benchmark tests
-│           │   └── utils/       # Shared test utilities
-│           └── test/java/io/legado/app/
-│               ├── unit/        # JUnit unit tests
-│               └── manual/      # Manually executed test code
-├── test-docs/                   # Test documentation
-│   ├── test-plan.md             # Overall test strategy & scope
-│   ├── test-case-plan.md        # TC assignment plan & method distribution
-│   ├── test-cases.md            # Detailed test case specifications
-│   ├── bug-report-template.md   # Template for filing bugs
-│   └── test-summary-report.md   # Final test summary
-├── bug-reports/                 # Filed bug reports (bug-XXX.md)
-├── screenshots/                 # Test evidence screenshots
+├── test-docs/                   # Test documentation (methodology, templates)
+│   ├── test-plan.md
+│   ├── test-case-plan.md
+│   ├── test-cases.md
+│   ├── bug-report-template.md
+│   └── test-summary-report.md
+├── bug-reports/                 # Bug report directory (template only)
+├── screenshots/                 # Screenshot directory (template only)
 ├── automation/                  # Test runner scripts & config
 └── test-results/                # Test execution results
 ```
-
-## Test Scope
-
-- **Functional Testing**: Core reading features, book import, bookshelf management, reading settings, WebDAV sync
-- **UI Testing**: Layout rendering, theme switching, navigation flows
-- **Compatibility Testing**: Android API levels, screen sizes, font scaling
-- **Performance Testing**: App startup time, page rendering speed, memory footprint
 
 ## Testing Methods
 
@@ -75,12 +61,8 @@ This project uses multiple complementary testing approaches:
 | Manual | Structured checklist | UX & accessibility |
 | Performance | Benchmark / timer | Speed & memory |
 
-See `AI-GUIDE.md` for how to contribute tests. See `test-docs/test-case-plan.md` for TC assignments.
+See `AI-GUIDE.md` for test writing patterns. See `test-docs/test-case-plan.md` for TC assignments.
 
 ## App Under Test
 
-- **App Name**: Legado
-- **Platform**: Android
-- **Build System**: Gradle (Kotlin DSL)
-- **Min SDK**: 21
-- **Language**: Kotlin
+**TBD** — A new app will be selected to replace Legado. Candidates under evaluation.
