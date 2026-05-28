@@ -1,5 +1,8 @@
 # Manual Test Results — Legado Mobile
 
+> **ARCHIVED** — Historical manual test results from the Legado project.
+> See [NOTICE.md](../NOTICE.md).
+
 ## Test Session Info
 
 | Field | Detail |

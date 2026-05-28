@@ -1,5 +1,8 @@
 # Test Summary Report — Legado Mobile
 
+> **ARCHIVED** — Historical test results from the Legado project. All test code removed.
+> See [NOTICE.md](../NOTICE.md).
+
 ## Overview
 
 | Field | Detail |
