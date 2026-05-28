@@ -1,5 +1,9 @@
 # AI Collaboration Guide — Legado Mobile Testing
 
+> **ARCHIVED** — App source and test code have been removed. Package names, file paths,
+> and architecture details reference the historical Legado project. See [NOTICE.md](NOTICE.md).
+> This guide serves as a methodology reference for the replacement project.
+
 This document is written for AI assistants (Claude, ChatGPT, Copilot, etc.) to quickly
 understand the project and start contributing test cases.
 

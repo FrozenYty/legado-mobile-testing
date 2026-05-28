@@ -1,5 +1,8 @@
 # Test Case Assignment Plan — Legado Mobile Testing
 
+> **ARCHIVED** — Historical assignment plan from the Legado project. All test code removed.
+> See [NOTICE.md](../NOTICE.md). Preserved for methodology and distribution reference.
+>
 > **Living document** — TC ranges, member counts, and method distributions can be extended.
 > When adding new members or test cases, use the next available TC-IDs and update the assignment table.
 > See `AI-GUIDE.md` for setup, conventions, and patterns.

@@ -1,5 +1,9 @@
 # Contributing to Legado Mobile Testing
 
+> **ARCHIVED** — App source and test code have been removed. Package names and file
+> paths reference the historical Legado project. See [NOTICE.md](NOTICE.md).
+> This guide serves as a methodology template for the replacement project.
+>
 > **Read this before making any commits or pull requests.**
 > AI assistants: feed this file into your context before writing code.
 

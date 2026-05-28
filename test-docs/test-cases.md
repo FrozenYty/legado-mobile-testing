@@ -1,5 +1,8 @@
 # Test Cases — Legado Mobile
 
+> **ARCHIVED** — Historical test cases from the Legado project. All test code removed.
+> See [NOTICE.md](../NOTICE.md). Preserved for methodology reference only.
+
 ## TC-001: App Launch
 
 | Field | Detail |

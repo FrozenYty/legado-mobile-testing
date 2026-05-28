@@ -1,5 +1,9 @@
 # Test Plan — Legado Mobile
 
+> **ARCHIVED** — Historical test plan from the Legado project. All app source and test code
+> have been removed for compliance. See [NOTICE.md](../NOTICE.md). This document is preserved
+> for methodology reference only.
+
 > This plan describes the overall strategy. For detailed TC assignments, see `test-case-plan.md`.
 > For how to contribute, see `AI-GUIDE.md`.
 

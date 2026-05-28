@@ -1,5 +1,8 @@
 # Task Brief — Legado Mobile Testing
 
+> **ARCHIVED** — App source and test code removed. See [NOTICE.md](NOTICE.md).
+> This document serves as a workflow template for the replacement project.
+
 **To**: Members 2, 3, 4  
 **From**: Tianyu Yao (Team Lead)  
 **Date**: 2026-05-27
